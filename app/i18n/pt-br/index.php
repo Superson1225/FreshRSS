@@ -1,32 +1,57 @@
 <?php
 
+/******************************************************************************/
+/* Each entry of that file can be associated with a comment to indicate its   */
+/* state. When there is no comment, it means the entry is fully translated.   */
+/* The recognized comments are (comment matching is case-insensitive):        */
+/*   + TODO: the entry has never been translated.                             */
+/*   + DIRTY: the entry has been translated but needs to be updated.          */
+/*   + IGNORE: the entry does not need to be translated.                      */
+/* When a comment is not recognized, it is discarded.                         */
+/******************************************************************************/
+
 return array(
 	'about' => array(
 		'_' => 'Sobre',
-		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',
+		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'System information',	// TODO
+				'browser' => 'Browser',	// TODO
+				'database' => 'Database',	// TODO
+				'server_software' => 'Server software',	// TODO
+				'version_frss' => 'FreshRSS version',	// TODO
+				'version_php' => 'PHP version',	// TODO
+			),
+		),
 		'bugs_reports' => 'Reportar Bugs',
 		'credits' => 'Créditos',
-		'credits_content' => 'Alguns elementos de design vieram do <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> Embora FreshRRS não utiliza este framework. <a href="https://git.gnome.org/browse/gnome-icon-theme-symbolic">Ícones</a> vieram do <a href="https://www.gnome.org/">GNOME project</a>. <em>Open Sans</em> font police foi criada por <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS é baseado no <a href="https://github.com/marienfressinaud/MINZ">Minz</a>, um framework PHP.',
-		'freshrss_description' => 'FreshRSS é um RSS feeds aggregator para um host próprio como o <a href="http://tontof.net/kriss/feed/">Kriss Feed</a> ou <a href="https://github.com/LeedRSS/Leed">Leed</a>. É leve e fácil de utilizar enquanto é uma ferramenta poderosa e configurável. ',
-		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">no Github</a>',
+		'credits_content' => 'Alguns elementos de design vieram do <a href="http://twitter.github.io/bootstrap/">Bootstrap</a> Embora FreshRRS não utiliza este framework. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Ícones</a> vieram do <a href="https://www.gnome.org/">GNOME project</a>. <em>Open Sans</em> font police foi criada por <a href="https://fonts.google.com/specimen/Open+Sans">Steve Matteson</a>. FreshRSS é baseado no <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, um framework PHP.',
+		'documentation' => 'Documentação',
+		'freshrss_description' => 'FreshRSS é um RSS feeds aggregator para um host próprio. É leve e fácil de utilizar enquanto é uma ferramenta poderosa e configurável. ',
+		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">no GitHub</a>',
 		'license' => 'licença',
 		'project_website' => 'Site do projeto',
 		'title' => 'Sobre',
 		'version' => 'Versão',
 	),
 	'feed' => array(
-		'add' => 'Você pode adicionar alguns feeds.',
 		'empty' => 'Não há nenhum artigo para mostrar.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS feed do %s',
 		'title' => 'Stream principal',
 		'title_fav' => 'Favoritos',
 		'title_global' => 'Visualização Global',
 	),
 	'log' => array(
-		'_' => 'Logs',
+		'_' => 'Logs',	// IGNORE
 		'clear' => 'Limpar logs',
 		'empty' => 'Arquivo de log está vazio',
-		'title' => 'Logs',
+		'title' => 'Logs',	// IGNORE
 	),
 	'menu' => array(
 		'about' => 'Sobre o FreshRSS',
@@ -35,6 +60,7 @@ return array(
 		'bookmark_query' => 'Salvar pesquisa atual',
 		'favorites' => 'Favoritos (%s)',
 		'global_view' => 'Visualização global',
+		'important' => 'Feeds importantes',
 		'main_stream' => 'Stream principal',
 		'mark_all_read' => 'Marcar todos como lidos',
 		'mark_cat_read' => 'Marcar categoria como lida',
@@ -49,6 +75,18 @@ return array(
 		'reader_view' => 'Visualização de leitura',
 		'rss_view' => 'Feed RSS',
 		'search_short' => 'Buscar',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => 'Mostrar apenas os favoritos',
 		'stats' => 'Estatísticas',
 		'subscription' => 'Gerenciamento de inscrições',

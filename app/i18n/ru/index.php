@@ -1,32 +1,57 @@
 <?php
 
+/******************************************************************************/
+/* Each entry of that file can be associated with a comment to indicate its   */
+/* state. When there is no comment, it means the entry is fully translated.   */
+/* The recognized comments are (comment matching is case-insensitive):        */
+/*   + TODO: the entry has never been translated.                             */
+/*   + DIRTY: the entry has been translated but needs to be updated.          */
+/*   + IGNORE: the entry does not need to be translated.                      */
+/* When a comment is not recognized, it is discarded.                         */
+/******************************************************************************/
+
 return array(
 	'about' => array(
 		'_' => 'О проекте',
-		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',
+		'agpl3' => '<a href="https://www.gnu.org/licenses/agpl-3.0.html">AGPL 3</a>',	// IGNORE
+		'bug_reports' => array(
+			'environment_information' => array(
+				'_' => 'System information',	// TODO
+				'browser' => 'Browser',	// TODO
+				'database' => 'Database',	// TODO
+				'server_software' => 'Server software',	// TODO
+				'version_frss' => 'FreshRSS version',	// TODO
+				'version_php' => 'PHP version',	// TODO
+			),
+		),
 		'bugs_reports' => 'Баг репорты',
 		'credits' => 'Авторство',
-		'credits_content' => 'Некоторые элементы дизайна взяты из <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>, хотя FreshRSS не использует этот фреймворк. <a href="https://git.gnome.org/browse/gnome-icon-theme-symbolic">Иконки</a> взяты из <a href="https://www.gnome.org/">проекта GNOME</a>. Шрифт <em>Open Sans</em> создан <a href="https://fonts.google.com/specimen/Open+Sans">Стивом Мэттесоном</a>. FreshRSS основан на <a href="https://github.com/marienfressinaud/MINZ">Minz</a>, PHP-фреймворке.',
-		'freshrss_description' => 'FreshRSS &mdash; агрегатор RSS-лент для размещения на своём сервере подобно <a href="http://tontof.net/kriss/feed/">Kriss Feed</a> или <a href="https://github.com/LeedRSS/Leed">Leed</a>. Лёгкий и простой в использовании, будучи при этом мощным и настраиваемым инструментом.',
-		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">в Github</a>',
+		'credits_content' => 'Некоторые элементы дизайна взяты из <a href="http://twitter.github.io/bootstrap/">Bootstrap</a>, хотя FreshRSS не использует этот фреймворк. <a href="https://gitlab.gnome.org/Archive/gnome-icon-theme-symbolic">Иконки</a> взяты из <a href="https://www.gnome.org/">проекта GNOME</a>. Шрифт <em>Open Sans</em> создан <a href="https://fonts.google.com/specimen/Open+Sans">Стивом Мэттесоном</a>. FreshRSS основан на <a href="https://framagit.org/marienfressinaud/MINZ">Minz</a>, PHP-фреймворке.',
+		'documentation' => 'Документация',
+		'freshrss_description' => 'FreshRSS — агрегатор RSS-лент для размещения на своём сервере. Лёгкий и простой в использовании, будучи при этом мощным и настраиваемым инструментом.',
+		'github' => '<a href="https://github.com/FreshRSS/FreshRSS/issues">в GitHub</a>',
 		'license' => 'Лицензия',
 		'project_website' => 'Сайт проекта',
 		'title' => 'О проекте',
 		'version' => 'Версия',
 	),
 	'feed' => array(
-		'add' => 'Вы можете добавить ленты.',
 		'empty' => 'Нет статей для отображения.',
+		'received' => array(
+			'before_yesterday' => 'Received before yesterday',	// TODO
+			'today' => 'Received today',	// TODO
+			'yesterday' => 'Received yesterday',	// TODO
+		),
 		'rss_of' => 'RSS-лента %s',
 		'title' => 'Основной поток',
 		'title_fav' => 'Избранное',
 		'title_global' => 'Глобальный вид',
 	),
 	'log' => array(
-		'_' => 'Логи',
-		'clear' => 'Очистить логи',
-		'empty' => 'Файл лога пуст',
-		'title' => 'Логи',
+		'_' => 'Журнал',
+		'clear' => 'Очистить журнал',
+		'empty' => 'Файл журнала пуст',
+		'title' => 'Журнал',
 	),
 	'menu' => array(
 		'about' => 'О FreshRSS',
@@ -35,6 +60,7 @@ return array(
 		'bookmark_query' => 'Сохранить текущий запрос',
 		'favorites' => 'Избранное (%s)',
 		'global_view' => 'Глобальный вид',
+		'important' => 'Важные ленты',
 		'main_stream' => 'Основной поток',
 		'mark_all_read' => 'Отметить всё прочитанным',
 		'mark_cat_read' => 'Отметить категорию прочитанной',
@@ -49,13 +75,25 @@ return array(
 		'reader_view' => 'Вид для чтения',
 		'rss_view' => 'RSS-лента',
 		'search_short' => 'Поиск',
+		'sort' => array(
+			'_' => 'Sorting criteria',	// TODO
+			'date_asc' => 'Publication date 1→9',	// TODO
+			'date_desc' => 'Publication date 9→1',	// TODO
+			'id_asc' => 'Freshly received last',	// TODO
+			'id_desc' => 'Freshly received first',	// TODO
+			'link_asc' => 'Link A→Z',	// TODO
+			'link_desc' => 'Link Z→A',	// TODO
+			'rand' => 'Random order',	// TODO
+			'title_asc' => 'Title A→Z',	// TODO
+			'title_desc' => 'Title Z→A',	// TODO
+		),
 		'starred' => 'Показать избранное',
 		'stats' => 'Статистика',
 		'subscription' => 'Управление подписками',
 		'tags' => 'Мои метки',
 		'unread' => 'Показать непрочитанное',
 	),
-	'share' => 'Поделиться',
+	'share' => 'Обмен',
 	'tag' => array(
 		'related' => 'Теги статьи',
 	),
