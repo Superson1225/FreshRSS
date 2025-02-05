@@ -1,16 +1,26 @@
 <?php
 
+/******************************************************************************/
+/* Each entry of that file can be associated with a comment to indicate its   */
+/* state. When there is no comment, it means the entry is fully translated.   */
+/* The recognized comments are (comment matching is case-insensitive):        */
+/*   + TODO: the entry has never been translated.                             */
+/*   + DIRTY: the entry has been translated but needs to be updated.          */
+/*   + IGNORE: the entry does not need to be translated.                      */
+/* When a comment is not recognized, it is discarded.                         */
+/******************************************************************************/
+
 return array(
 	'auth' => array(
 		'allow_anonymous' => 'Povoliť čítanie článkov prednastaveného používateľa (%s) bez prihlásenia.',
 		'allow_anonymous_refresh' => 'Povoliť obnovenie článkov bez prihlásenia',
-		'api_enabled' => 'Povoliť prístup cez <abbr>API</abbr> <small>(vyžadujú mobilné aplikácie)</small>',
+		'api_enabled' => 'Povoliť prístup cez <abbr>API</abbr> <small>(vyžadujú mobilné aplikácie and sharing user queries)</small>',	// DIRTY
 		'form' => 'Webový formulár (traditičný, vyžaduje JavaScript)',
-		'http' => 'HTTP (pre pokročilých používateľov s HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Žiadny (nebezpečné)',
 		'title' => 'Prihlásenie',
-		'token' => 'Token prihlásenia',
-		'token_help' => 'Povoliť prístup k výstupu RSS prednastaveného používateľa bez prihlásenia:',
+		'token' => 'Hlavný prihlasovací token',
+		'token_help' => 'Povoľuje prístup k všetkým RSS výstupom, a tiež k obnove kanálov bez prihlásenia:',
 		'type' => 'Spôsob prihlásenia',
 		'unsafe_autologin' => 'Povoliť nebezpečné automatické prihlásenie pomocou webového formulára: ',
 	),
@@ -106,6 +116,7 @@ return array(
 		'description' => 'Popis',
 		'disabled' => 'Zakázané',
 		'empty_list' => 'Žiadne nainštalované rozšírenia',
+		'empty_list_help' => 'Check the logs to determine the reason behind the empty extension list.',	// TODO
 		'enabled' => 'Povolené',
 		'latest' => 'Nainštalované',
 		'name' => 'Názov',
@@ -137,8 +148,9 @@ return array(
 		'main_stream' => 'Všetky kanály',
 		'no_idle' => 'Žiadne neaktívne kanály!',
 		'number_entries' => 'Počet článkov: %d',
-		'percent_of_total' => 'Z celkového počtu: %%',
-		'repartition' => 'Rozdelenie článkov',
+		'overview' => 'Overview',	// TODO
+		'percent_of_total' => 'Z celkového počtu: %',
+		'repartition' => 'Rozdelenie článkov: %s',
 		'status_favorites' => 'Obľúbené',
 		'status_read' => 'Prečítané',
 		'status_total' => 'Spolu',
@@ -149,41 +161,75 @@ return array(
 	'system' => array(
 		'_' => 'Nastavenia systému',
 		'auto-update-url' => 'Odkaz na aktualizačný server',
+		'base-url' => array(
+			'_' => 'Základná URL',
+			'recommendation' => 'Automatické odporúčanie: <kbd>%s</kbd>',
+		),
 		'cookie-duration' => array(
 			'help' => 'v sekundách',
 			'number' => 'Dobra, počas ktorej ste prihlásený',
 		),
-		'force_email_validation' => 'Force email address validation',	// TODO - Translation
+		'force_email_validation' => 'Vynútiť overenie e-mailovej adresy',
 		'instance-name' => 'Názov inštancie',
 		'max-categories' => 'Limit počtu kategórií pre používateľa',
 		'max-feeds' => 'Limit počtu kanálov pre používateľov',
 		'registration' => array(
-			'help' => '0 znamená žiadny limit počtu účtov',
 			'number' => 'Maximálny počt účtov',
+			'select' => array(
+				'label' => 'Registračný formulár',
+				'option' => array(
+					'noform' => 'Zakázané: Žiadny registračný formulár',
+					'nolimit' => 'Povolené: Bez obmedzenia účtov',
+					'setaccountsnumber' => 'Určiť max. počet účtov',
+				),
+			),
+			'status' => array(
+				'disabled' => 'Formulár zakázaný',
+				'enabled' => 'Formulár povolený',
+			),
+			'title' => 'Registračný formulár používateľa',
+		),
+		'sensitive-parameter' => 'Citlivý parameter. Upravte ručne v súbore <kbd>./data/config.php</kbd>',
+		'tos' => array(
+			'disabled' => 'nebol zadaný',
+			'enabled' => '<a href="./?a=tos">je povolený</a>',
+			'help' => '<a href="https://freshrss.github.io/FreshRSS/en/admins/12_User_management.html#enable-terms-of-service-tos" target="_blank">Ako povolit Podmienky služby</a>',
+		),
+		'websub' => array(
+			'help' => 'O protokole <a href="https://freshrss.github.io/FreshRSS/en/users/WebSub.html" target="_blank">WebSub</a>',
 		),
 	),
 	'update' => array(
 		'_' => 'Aktualizácia systému',
 		'apply' => 'Použiť',
+		'changelog' => 'Zoznam zmien',
 		'check' => 'Skontrolovať aktualizácie',
-		'current_version' => 'Vaša aktuálna verzia FreshRSS: %s',
-		'last' => 'Posledná kontrola: %s',
+		'copiedFromURL' => 'update.php skopírovaný z %s do ./data',
+		'current_version' => 'Vaša aktuálna verzia',
+		'last' => 'Posledná kontrola',
+		'loading' => 'Aktualizuje sa…',
 		'none' => 'Žiadna nová aktualizácia',
+		'releaseChannel' => array(
+			'_' => 'Kanál verzií',
+			'edge' => 'Vývojárska verzia (“edge”)',
+			'latest' => 'Stabilná verzia (“latest”)',
+		),
 		'title' => 'Aktualizácia systému',
+		'viaGit' => 'Začala sa aktualizácia prostredníctvom git a GitHub.com',
 	),
 	'user' => array(
-		'admin' => 'Administrator',	// TODO - Translation
-		'article_count' => 'Articles',	// TODO - Translation
-		'back_to_manage' => '← Return to user list',	// TODO - Translation
+		'admin' => 'Administrátor',
+		'article_count' => 'Články',
+		'back_to_manage' => '← Späť na zoznam používateľov',
 		'create' => 'Vytvoriť nového používateľa',
-		'database_size' => 'Database size',	// TODO - Translation
-		'email' => 'Email address',	// TODO - Translation
-		'enabled' => 'Enabled',	// TODO - Translation
-		'feed_count' => 'Feeds',	// TODO - Translation
-		'is_admin' => 'Is admin',	// TODO - Translation
+		'database_size' => 'Veľkosť databázy',
+		'email' => 'E-mailová adresa',
+		'enabled' => 'Povolené',
+		'feed_count' => 'Kanály',
+		'is_admin' => 'Je admin',
 		'language' => 'Jazyk',
-		'last_user_activity' => 'Last user activity',	// TODO - Translation
-		'list' => 'User list',	// TODO - Translation
+		'last_user_activity' => 'Posledná aktivita používateľa',
+		'list' => 'Zoznam používateľov',
 		'number' => 'Je vytvorený používateľ: %d',
 		'numbers' => 'Je vytvorených používateľov: %d',
 		'password_form' => 'Heslo<br /><small>(pre spôsob prihlásenia cez webový formulár)</small>',

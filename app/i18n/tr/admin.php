@@ -1,16 +1,26 @@
 <?php
 
+/******************************************************************************/
+/* Each entry of that file can be associated with a comment to indicate its   */
+/* state. When there is no comment, it means the entry is fully translated.   */
+/* The recognized comments are (comment matching is case-insensitive):        */
+/*   + TODO: the entry has never been translated.                             */
+/*   + DIRTY: the entry has been translated but needs to be updated.          */
+/*   + IGNORE: the entry does not need to be translated.                      */
+/* When a comment is not recognized, it is discarded.                         */
+/******************************************************************************/
+
 return array(
 	'auth' => array(
 		'allow_anonymous' => 'Öntanımlı kullanıcının makalelerinin anonim okunmasına izin ver (%s)',
 		'allow_anonymous_refresh' => 'Anonim makale yenilemesine izin ver',
-		'api_enabled' => '<abbr>API</abbr> erişimine izin ver <small>(mobil uygulamalar için gerekli)</small>',
+		'api_enabled' => '<abbr>API</abbr> erişimine izin ver <small>(mobil uygulamalar için gerekli and sharing user queries)</small>',	// DIRTY
 		'form' => 'Web formu (geleneksel, JavaScript gerektirir)',
-		'http' => 'HTTP (ileri kullanıcılar için, HTTPS)',
+		'http' => 'HTTP (advanced: managed by Web server, OIDC, SSO…)',	// TODO
 		'none' => 'Hiçbiri (tehlikeli)',
 		'title' => 'Kimlik doğrulama',
-		'token' => 'Kimlik doğrulama işareti',
-		'token_help' => 'Kimlik doğrulama olmaksızın öntanımlı kullanıcının RSS çıktısına erişime izin ver:',
+		'token' => 'Ana kimlik doğrulama jetonu',
+		'token_help' => 'Kullanıcının tüm RSS çıkışlarına erişimine ve kimlik doğrulaması olmadan akışları yenilemesine izin ver:',
 		'type' => 'Kimlik doğrulama yöntemi',
 		'unsafe_autologin' => 'Güvensiz otomatik girişe izin ver: ',
 	),
@@ -106,6 +116,7 @@ return array(
 		'description' => 'Açıklama',
 		'disabled' => 'Pasif',
 		'empty_list' => 'Yüklenmiş eklenti bulunmamaktadır',
+		'empty_list_help' => 'Boş uzantı listesinin arkasındaki nedeni belirlemek için günlükleri kontrol edin.',
 		'enabled' => 'Aktif',
 		'latest' => 'Kuruldu',
 		'name' => 'İsim',
@@ -137,8 +148,9 @@ return array(
 		'main_stream' => 'Ana akış',
 		'no_idle' => 'Boşta akış yok!',
 		'number_entries' => '%d makale',
-		'percent_of_total' => '%% toplamın yüzdesi',
-		'repartition' => 'Makale dağılımı',
+		'overview' => 'Overview',	// TODO
+		'percent_of_total' => '% toplamın yüzdesi',
+		'repartition' => 'Makale dağılımı: %s',
 		'status_favorites' => 'Favoriler',
 		'status_read' => 'Okunmuş',
 		'status_total' => 'Toplam',
@@ -149,6 +161,10 @@ return array(
 	'system' => array(
 		'_' => 'Sistem yapılandırması',
 		'auto-update-url' => 'Otomatik güncelleme sunucu URL',
+		'base-url' => array(
+			'_' => 'Ana URL',
+			'recommendation' => 'Otomatik öneri: <kbd>%s</kbd>',
+		),
 		'cookie-duration' => array(
 			'help' => 'saniye',
 			'number' => 'Oturum açık kalma süresi',
@@ -158,18 +174,48 @@ return array(
 		'max-categories' => 'Kullanıcı başına kategori limiti',
 		'max-feeds' => 'Kullanıcı başına akış limiti',
 		'registration' => array(
-			'help' => '0 sınır yok anlamındadır',
 			'number' => 'En fazla hesap sayısı',
+			'select' => array(
+				'label' => 'Kayıt Formu',
+				'option' => array(
+					'noform' => 'Devre Dışı: Kayıt Formu',
+					'nolimit' => 'Devrede: Hesap limiti yok',
+					'setaccountsnumber' => 'Maksimum hesap limitini ayarla',
+				),
+			),
+			'status' => array(
+				'disabled' => 'Form devre dışı',
+				'enabled' => 'Form devrede',
+			),
+			'title' => 'Kullanıcı kayıt formu',
+		),
+		'sensitive-parameter' => 'Hassas parametre. <kbd>./data/config.php</kbd> adresinde elle düzenleyiniz.',
+		'tos' => array(
+			'disabled' => 'verilmedi',
+			'enabled' => '<a href="./?a=tos">aktive edildi</a>',
+			'help' => '<a href="https://freshrss.github.io/FreshRSS/en/admins/12_User_management.html#enable-terms-of-service-tos" target="_blank">Kullanım şartlarını</a> nasıl aktifleştiririm?',
+		),
+		'websub' => array(
+			'help' => '<a href="https://freshrss.github.io/FreshRSS/en/users/WebSub.html" target="_blank">WebSub</a> hakkında',
 		),
 	),
 	'update' => array(
 		'_' => 'Sistem güncelleme',
 		'apply' => 'Uygula',
+		'changelog' => 'Değişiklik günlüğü',
 		'check' => 'Güncelleme kontrolü',
-		'current_version' => 'Mevcut FreshRSS sürümünüz %s.',
-		'last' => 'Son kontrol: %s',
+		'copiedFromURL' => 'update.php %s lokasyonundan ./data lokasyonuna kopyalandı',
+		'current_version' => 'Mevcut sürümünüz',
+		'last' => 'Son kontrol',
+		'loading' => 'Güncelleniyor…',
 		'none' => 'Yeni güncelleme yok',
+		'releaseChannel' => array(
+			'_' => 'Sürüm kanalı',
+			'edge' => 'Sürekli güncellenen sürüm (“edge”)',
+			'latest' => 'Stabil sürüm (“latest”)',
+		),
 		'title' => 'Sistem güncelleme',
+		'viaGit' => 'git ve GitHub.com ile gğncelleme başladı',
 	),
 	'user' => array(
 		'admin' => 'Yönetici',

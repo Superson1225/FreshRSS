@@ -1,5 +1,15 @@
 <?php
 
+/******************************************************************************/
+/* Each entry of that file can be associated with a comment to indicate its   */
+/* state. When there is no comment, it means the entry is fully translated.   */
+/* The recognized comments are (comment matching is case-insensitive):        */
+/*   + TODO: the entry has never been translated.                             */
+/*   + DIRTY: the entry has been translated but needs to be updated.          */
+/*   + IGNORE: the entry does not need to be translated.                      */
+/* When a comment is not recognized, it is discarded.                         */
+/******************************************************************************/
+
 return array(
 	'action' => array(
 		'finish' => 'Instalação completa',
@@ -8,14 +18,6 @@ return array(
 		'next_step' => 'Vá para o próximo passo',
 		'reinstall' => 'Reinstale o FreshRSS',
 	),
-	'auth' => array(
-		'form' => 'Formulário web(tradicional, necessita JavaScript)',
-		'http' => 'HTTP (Para usuários avançados com HTTPS)',
-		'none' => 'None (perigoso)',
-		'password_form' => 'Senha<br /><small>(Para o método do login pelo formulário)</small>',
-		'password_format' => 'Ao menos 7 caracteres',
-		'type' => 'Método de autenticação',
-	),
 	'bdd' => array(
 		'_' => 'Banco de dados',
 		'conf' => array(
@@ -23,7 +25,7 @@ return array(
 			'ko' => 'Verifique as informações do seu banco de dados.',
 			'ok' => 'Configurações do banco de dados foram salvas.',
 		),
-		'host' => 'Host',
+		'host' => 'Host',	// IGNORE
 		'password' => 'Senha do banco de dados',
 		'prefix' => 'Prefixo da tabela',
 		'type' => 'Tipo do banco de dados',
@@ -100,7 +102,10 @@ return array(
 		'ok' => 'Configurações gerais foram salvas.',
 	),
 	'congratulations' => 'Parabéns!',
-	'default_user' => 'Usuário do usuário padrão <small>(máximo de 16 caracteres alfanuméricos)</small>',
+	'default_user' => array(
+		'_' => 'Usuário do usuário padrão',
+		'max_char' => 'máximo de 16 caracteres alfanuméricos',
+	),
 	'fix_errors_before' => 'Por favor solucione os erros antes de ir para o próximo passo.',
 	'javascript_is_better' => 'O FreshRSS é mais agradável com o JavaScript ativo',
 	'js' => array(
