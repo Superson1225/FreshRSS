@@ -1,5 +1,15 @@
 <?php
 
+/******************************************************************************/
+/* Each entry of that file can be associated with a comment to indicate its   */
+/* state. When there is no comment, it means the entry is fully translated.   */
+/* The recognized comments are (comment matching is case-insensitive):        */
+/*   + TODO: the entry has never been translated.                             */
+/*   + DIRTY: the entry has been translated but needs to be updated.          */
+/*   + IGNORE: the entry does not need to be translated.                      */
+/* When a comment is not recognized, it is discarded.                         */
+/******************************************************************************/
+
 return array(
 	'action' => array(
 		'finish' => 'Completar instalación',
@@ -7,14 +17,6 @@ return array(
 		'keep_install' => 'Conservar la configuración anterior',
 		'next_step' => 'Ir al siguiente paso',
 		'reinstall' => 'Reinstalar FreshRSS',
-	),
-	'auth' => array(
-		'form' => 'Formulario Web (método más habitual, requiere JavaScript)',
-		'http' => 'HTTP (para usuarios avanzados con HTTPS)',
-		'none' => 'Ninguna (peligroso)',
-		'password_form' => 'Contraseña<br /><small>(para el método de acceso mediante formulario web)</small>',
-		'password_format' => 'Al menos 7 caracteres',
-		'type' => 'Método de identificación',
 	),
 	'bdd' => array(
 		'_' => 'Base de datos',
@@ -100,7 +102,10 @@ return array(
 		'ok' => 'La configuración general se ha guardado.',
 	),
 	'congratulations' => '¡Enhorabuena!',
-	'default_user' => 'Nombre de usuario para el usuario por defecto <small>(máximo de 16 caracteres alfanuméricos)</small>',
+	'default_user' => array(
+		'_' => 'Nombre de usuario para el usuario por defecto',
+		'max_char' => 'máximo de 16 caracteres alfanuméricos',
+	),
 	'fix_errors_before' => 'Por favor, soluciona los errores detectados antes de proceder con el siguiente paso.',
 	'javascript_is_better' => 'FreshRSS funciona mejor con JavaScript activado',
 	'js' => array(
