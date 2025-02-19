@@ -1,23 +1,38 @@
 <?php
+declare(strict_types=1);
 //NB: Do not edit; use ./constants.local.php instead.
 
 //<Not customisable>
-define('FRESHRSS_MIN_PHP_VERSION', '7.0.0');
-define('FRESHRSS_VERSION', '1.19.0-dev');
-define('FRESHRSS_WEBSITE', 'https://freshrss.org');
-define('FRESHRSS_WIKI', 'https://freshrss.github.io/FreshRSS/');
-
-define('APP_NAME', 'FreshRSS');
-
-define('FRESHRSS_PATH', __DIR__);
-define('PUBLIC_PATH', FRESHRSS_PATH . '/p');
-define('PUBLIC_TO_INDEX_PATH', '/i');
-define('INDEX_PATH', PUBLIC_PATH . PUBLIC_TO_INDEX_PATH);
-define('PUBLIC_RELATIVE', '..');
-define('LIB_PATH', FRESHRSS_PATH . '/lib');
-define('APP_PATH', FRESHRSS_PATH . '/app');
-define('CORE_EXTENSIONS_PATH', LIB_PATH . '/core-extensions');
-define('TESTS_PATH', FRESHRSS_PATH . '/tests');
+/** @var string */
+const FRESHRSS_MIN_PHP_VERSION = '8.1.0';
+/** @var string */
+const FRESHRSS_VERSION = '1.25.1-dev';
+/** @var string */
+const FRESHRSS_WEBSITE = 'https://freshrss.org';
+/** @var string */
+const FRESHRSS_WIKI = 'https://freshrss.github.io/FreshRSS/';
+/** @var string */
+const APP_NAME = 'FreshRSS';
+/** @var string */
+const FRESHRSS_PATH = __DIR__;
+/** @var string */
+const PUBLIC_PATH = FRESHRSS_PATH . '/p';
+/** @var string */
+const PUBLIC_TO_INDEX_PATH = '/i';
+/** @var string */
+const INDEX_PATH = PUBLIC_PATH . PUBLIC_TO_INDEX_PATH;
+/** @var string */
+const PUBLIC_RELATIVE = '..';
+/** @var string */
+const LIB_PATH = FRESHRSS_PATH . '/lib';
+/** @var string */
+const APP_PATH = FRESHRSS_PATH . '/app';
+/** @var string */
+const I18N_PATH = APP_PATH . '/i18n';
+/** @var string */
+const CORE_EXTENSIONS_PATH = LIB_PATH . '/core-extensions';
+/** @var string */
+const TESTS_PATH = FRESHRSS_PATH . '/tests';
 //</Not customisable>
 
 if (file_exists(__DIR__ . '/constants.local.php')) {
@@ -37,13 +52,23 @@ defined('COPY_SYSLOG_TO_STDERR') or define('COPY_SYSLOG_TO_STDERR', filter_var(g
 // Maximum log file size in Bytes, before it will be divided by two
 defined('MAX_LOG_SIZE') or define('MAX_LOG_SIZE', 1048576);
 
+// Amount of characters of text shown if feed has no title
+defined('MAX_CHARS_EMPTY_FEED_TITLE') or define('MAX_CHARS_EMPTY_FEED_TITLE', 75);
+
 //This directory must be writable
-defined('DATA_PATH') or define('DATA_PATH', FRESHRSS_PATH . '/data');
+$dataPath = getenv('DATA_PATH');
+if (is_string($dataPath) && $dataPath !== '') {
+	define('DATA_PATH', $dataPath);
+} else {
+	defined('DATA_PATH') or define('DATA_PATH', FRESHRSS_PATH . '/data');
+}
 
 defined('UPDATE_FILENAME') or define('UPDATE_FILENAME', DATA_PATH . '/update.php');
 defined('USERS_PATH') or define('USERS_PATH', DATA_PATH . '/users');
-defined('ADMIN_LOG') or define('ADMIN_LOG', USERS_PATH . '/_/log.txt');
+defined('LOG_FILENAME') or define('LOG_FILENAME', 'log.txt');
+defined('ADMIN_LOG') or define('ADMIN_LOG', USERS_PATH . '/_/' . LOG_FILENAME);
 defined('API_LOG') or define('API_LOG', USERS_PATH . '/_/log_api.txt');
+defined('TOS_FILENAME') or define('TOS_FILENAME', DATA_PATH . '/tos.html');
 defined('CACHE_PATH') or define('CACHE_PATH', DATA_PATH . '/cache');
 defined('PSHB_LOG') or define('PSHB_LOG', USERS_PATH . '/_/log_pshb.txt');
 defined('PSHB_PATH') or define('PSHB_PATH', DATA_PATH . '/PubSubHubbub');
@@ -55,3 +80,6 @@ defined('EXTENSIONS_PATH') or define('EXTENSIONS_PATH', FRESHRSS_PATH . '/extens
 
 //Directory used for feed mutex with *.freshrss.lock files. Must be writable.
 defined('TMP_PATH') or define('TMP_PATH', sys_get_temp_dir());
+
+//clean the cache after x hours (720 hours = 30 days)
+defined('CLEANCACHE_HOURS') or define('CLEANCACHE_HOURS', 720);

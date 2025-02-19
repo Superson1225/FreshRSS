@@ -1,12 +1,22 @@
 <?php
 
+/******************************************************************************/
+/* Each entry of that file can be associated with a comment to indicate its   */
+/* state. When there is no comment, it means the entry is fully translated.   */
+/* The recognized comments are (comment matching is case-insensitive):        */
+/*   + TODO: the entry has never been translated.                             */
+/*   + DIRTY: the entry has been translated but needs to be updated.          */
+/*   + IGNORE: the entry does not need to be translated.                      */
+/* When a comment is not recognized, it is discarded.                         */
+/******************************************************************************/
+
 return array(
 	'access' => array(
 		'denied' => 'No dispones de permiso para acceder a esta página',
 		'not_found' => 'La página que buscas no existe',
 	),
 	'admin' => array(
-		'optimization_complete' => 'Optimimización completada',
+		'optimization_complete' => 'Optimización completada',
 	),
 	'api' => array(
 		'password' => array(
@@ -25,7 +35,7 @@ return array(
 	),
 	'conf' => array(
 		'error' => 'Hubo un error durante el guardado de la configuración.',
-		'query_created' => 'Se ha creado la petición "%s".',
+		'query_created' => 'Se ha creado la petición “%s”.',
 		'shortcuts_updated' => 'Se han actualizado los atajos de teclado',
 		'updated' => 'Se ha actualizado la configuración',
 	),
@@ -47,11 +57,11 @@ return array(
 	),
 	'import_export' => array(
 		'export_no_zip_extension' => 'La extensión ZIP no está disponible en tu servidor. Por favor, exporta estos archivos uno a uno.',
-		'feeds_imported' => 'Se han importado tus fuentes y quedarán actualizadas',
-		'feeds_imported_with_errors' => 'Se importaron tus fuentes; pero hubo algunos errores',
+		'feeds_imported' => 'Se han importado tus fuentes y quedarán actualizadas. Si has terminado, puedes hacer click en el botón <i>Actualizar fuentes</i>.',
+		'feeds_imported_with_errors' => 'Se importaron tus fuentes; pero hubo algunos errores. Si has terminado, puedes hacer click en el botón <i>Actualizar fuentes</i>',
 		'file_cannot_be_uploaded' => 'No es posible enviar el archivo',
 		'no_zip_extension' => 'La extensión ZIP no está disponible en tu servidor.',
-		'zip_error' => 'Hubo un error durante la importación ZIP.',
+		'zip_error' => 'Hubo un error durante la importación del ZIP.',
 	),
 	'profile' => array(
 		'error' => 'Tu perfil no puede ser modificado',
@@ -84,20 +94,20 @@ return array(
 			'cache_cleared' => '<em>%s</em> se ha borrado la caché',
 			'deleted' => 'Fuente eliminada',
 			'error' => 'No es posible actualizar la fuente',
-			'internal_problem' => 'No ha sido posible agregar la fuente RSS. <a href="%s">Revisa el registro de FreshRSS </a> para más información.',
+			'internal_problem' => 'No ha sido posible agregar la fuente RSS. <a href="%s">Revisa el registro de FreshRSS </a> para más información. Puedes probar de forzarlo añadiendo la etiqueta <code>#force_feed</code> a la URL.',
 			'invalid_url' => 'La URL <em>%s</em> es inválida',
-			'n_actualized' => 'Se han actualiado %d fuentes',
+			'n_actualized' => 'Se han actualizado %d fuentes',
 			'n_entries_deleted' => 'Se han eliminado %d artículos',
 			'no_refresh' => 'No hay fuente a actualizar…',
 			'not_added' => '<em>%s</em> no ha podido se añadida',
-			'not_found' => 'No se puede encontrar el feed',
+			'not_found' => 'No se puede encontrar la fuente',
 			'over_max' => 'Has alcanzado tu límite de fuentes (%d)',
 			'reloaded' => '<em>%s</em> se ha vuelto a cargar',
 			'selector_preview' => array(
 				'http_error' => 'Error al cargar el contenido del sitio web.',
-				'no_entries' => 'No hay artículos en este feed. Necesitas al menos un artículo para crear una vista previa.',
-				'no_feed' => 'Error interno (no se puede encontrar el feed).',
-				'no_result' => 'El selector no coincidyó con nada. Como reserva, se mostrará el texto original del feed en su lugar.',
+				'no_entries' => 'No hay artículos en esta fuente. Necesitas al menos un artículo para crear una vista previa.',
+				'no_feed' => 'Error interno (no se puede encontrar la fuente).',
+				'no_result' => 'El selector no coincidió con nada. Como reserva, se mostrará el texto original de la fuente en su lugar.',
 				'selector_empty' => 'El selector está vacío. Debe definir uno para crear una vista previa.',
 			),
 			'updated' => 'Fuente actualizada',
@@ -105,9 +115,11 @@ return array(
 		'purge_completed' => 'Limpieza completada (se han eliminado %d artículos)',
 	),
 	'tag' => array(
-		'created' => 'Se ha creado la etiqueta "%s".',
+		'created' => 'Se ha creado la etiqueta “%s”.',
+		'error' => '¡La etiqueta no se pudo actualizar!',
 		'name_exists' => 'El nombre de la etiqueta ya existe.',
-		'renamed' => 'La etiqueta "%s" ha sido renombrada a "%s".',
+		'renamed' => 'La etiqueta “%s” ha sido renombrada a “%s”.',
+		'updated' => 'La etiqueta se ha actualizado.',
 	),
 	'update' => array(
 		'can_apply' => 'FreshRSS se va a actualizar a la <strong>versión %s</strong>.',
